@@ -1,7 +1,6 @@
-import { MessageService } from './../message.service';
-import { HEROES } from './../mock-heroes';
-import { Hero } from './../hero';
-import { HeroService } from '../hero.service';
+import { MessageService } from '../services/messages/message.service';
+import { Hero } from '../models/hero/hero';
+import { HeroService } from '../services/hero/hero.service';
 
 import { Component, OnInit } from '@angular/core';
 

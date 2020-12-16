@@ -1,0 +1,23 @@
+<p>calc-inssorks!</p>
+
+<div>
+    <label>Salário:
+      <input #salario />
+    </label>
+    
+    <button (click)="calc(salario.value); salario.value=''">
+      Calcular
+    </button>
+
+    
+  </div>
+
+<ul>
+    <li *ngFor="let faixa of faixas">     
+        <span class="badge">{{faixa.seq}}</span> {{faixa.aliquota}}           
+    </li>
+  </ul>
+
+<h1>BASE INSS: {{ baseInss }}</h1>
+<h1>{{ inss }}</h1>
+  
