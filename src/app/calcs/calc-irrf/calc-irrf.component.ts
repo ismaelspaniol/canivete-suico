@@ -15,9 +15,10 @@ import { CalcInssComponent } from '../calc-inss/calc-inss.component';
   styleUrls: ['./calc-irrf.component.scss']
 })
 export class CalcIrrfComponent implements OnInit {
-  baseIrrf: number;
-  irrf: number;
+  baseIrrf: number = 0;
+  irrf: number = 0;
   aCalcular: number;
+  loading : boolean = false;
   
 
 
@@ -27,8 +28,10 @@ export class CalcIrrfComponent implements OnInit {
 
 
   async calc(salario: string, dependentes: string): Promise<void> {
+    this.loading = true;
     this.baseIrrf = await this.calcirrfService.calcBaseIrrf(Number(salario), Number(dependentes));
     this.irrf = await this.calcirrfService.calc(Number(salario), Number(dependentes));
+    this.loading = false;
 
   }
 

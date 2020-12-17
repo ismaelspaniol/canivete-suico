@@ -23,9 +23,18 @@
       </td>
     </tr>
   </table>
-</div> <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
-  Calcular
-</button>
+  <div *ngIf='salario.value > 0'>
+    <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
+      Calcular
+    </button>
+  </div>
 
-<h1>BASE IRRF: {{ baseIrrf }}</h1>
-<h1>IRRF: {{ irrf }}</h1>
+
+
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="loading == false && baseIrrf > 0">
+    <h1>BASE IRRF: {{ baseIrrf }}</h1>
+    <h1>IRRF: {{ irrf }}</h1>
+  </div>

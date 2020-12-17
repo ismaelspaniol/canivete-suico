@@ -8,19 +8,20 @@ import { truncateDecimals } from 'src/app/shared/functions';
   styleUrls: ['./calc-liq-esperado.component.scss']
 })
 export class CalcLiqEsperadoComponent implements OnInit {
-  salarioCarteira : number;
-  dependentes : number;
-  salarioLiquido : number;
+  salarioCarteira : number = 0;
+  dependentes : number = 0;
+  salarioLiquido : number = 0;
+  loading : boolean = false;
   
   constructor(private calcLiqEsperadoService : CalcliqesperadoService) { }
 
   ngOnInit(): void {
   }
   async calc(salario: string, dependentes : String): Promise<void> {
-    
+    this.loading = true;
     this.salarioCarteira = truncateDecimals( await this.calcLiqEsperadoService.calc(Number(salario), Number(dependentes)),4); 
     this.salarioLiquido = Number(salario);
-    
+    this.loading = false;
 
   }
 }

@@ -20,10 +20,17 @@
       </td>
     </tr>
   </table>
-</div> <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
-  Calcular
-</button>
-<div *ngIf="salarioCarteira">
-  <h1>Valor de {{salarioCarteira}} necessário para atingir o valor líquido de {{salarioLiquido}}</h1>
+</div> 
+<div *ngIf='salario.value'>
+  <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
+    Calcular
+  </button>
+</div>
 
+
+<div  *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false && salarioCarteira > 0">
+  <h1>Valor de {{salarioCarteira}} necessário para atingir o valor líquido de {{salarioLiquido}}</h1>
 </div>
