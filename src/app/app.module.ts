@@ -22,6 +22,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CalcInssComponent } from './calcs/calc-inss/calc-inss.component';
@@ -41,7 +43,8 @@ import { HomeComponent } from './home/home.component';
     MatListModule,
     MatButtonModule,
     MatIconModule,
-
+    MatInputModule,
+    
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

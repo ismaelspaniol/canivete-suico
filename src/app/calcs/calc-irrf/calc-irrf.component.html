@@ -1,19 +1,31 @@
-<p>Cálculo IRRF</p>
+<h1>
+  Cálculo IRRF
+</h1>
+
+
+
 <div>
-  <label>Salário:
-    <input #salario />
-  </label>
-
-  <label>Dependentes:
-    <input #dependentes />
-  </label>
-
-  <button (click)="calc(salario.value, dependentes.value); salario.value=''">
-    Calcular
-  </button>
-  
-</div>
-
+  <table cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Salário</mat-label>
+          <input matInput #salario>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Dependentes </mat-label>
+          <input matInput #dependentes>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div> <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
+  Calcular
+</button>
 
 <h1>BASE IRRF: {{ baseIrrf }}</h1>
 <h1>IRRF: {{ irrf }}</h1>

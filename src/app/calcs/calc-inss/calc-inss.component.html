@@ -1,23 +1,19 @@
-<p>Cálculo de INSS</p>
-
+<h1>Cálculo de INSS</h1>
 <div>
-    <label>Salário:
-      <input #salario />
-    </label>
-    
-    <button (click)="calc(salario.value); salario.value=''">
-      Calcular
-    </button>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Salário</mat-label>
+          <input matInput #salario>
+        </mat-form-field>
+      </td>
+    </tr>
 
-    
-  </div>
-
-<ul>
-    <li *ngFor="let faixa of faixas">     
-        <span class="badge">{{faixa.seq}}</span> {{faixa.aliquota}}           
-    </li>
-  </ul>
+  </table>
+</div> <button mat-raised-button (click)="calc(salario.value); salario.value=''">
+  Calcular
+</button>
 
 <h1>BASE INSS: {{ baseInss }}</h1>
-<h1>{{ inss }}</h1>
-  
+<h1>INSS DEVIDO: {{ inss }}</h1>

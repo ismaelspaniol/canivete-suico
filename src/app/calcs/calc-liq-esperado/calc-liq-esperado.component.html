@@ -1,19 +1,29 @@
-<p>Cálculo de valor liquido esperado</p>
+
+<h1>  Cálculo de valor liquido esperado</h1>
 
 <div>
-    <label>Salário:
-      <input #salario />
-    </label>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Salário</mat-label>
+          <input matInput #salario>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Dependentes </mat-label>
+          <input matInput #dependentes>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div> <button mat-raised-button (click)="calc(salario.value, dependentes.value); salario.value=''">
+  Calcular
+</button>
+<div *ngIf="salarioCarteira">
+  <h1>Valor de {{salarioCarteira}} necessário para atingir o valor líquido de {{salarioLiquido}}</h1>
 
-    <label>Dependentes:
-      <input #dependentes />
-    </label>
-    
-    <button (click)="calc(salario.value, dependentes.value); salario.value=''">
-      Calcular
-    </button>
-
-    
-  </div>
-  <h1>{{salarioCarteira}}</h1>
-
+</div>
