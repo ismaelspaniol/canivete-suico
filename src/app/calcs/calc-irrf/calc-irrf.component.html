@@ -1,27 +1,19 @@
-<p>calc-inssorks!</p>
-
+<p>Cálculo IRRF</p>
 <div>
-    <label>Salário:
-      <input #salario />
-    </label>
+  <label>Salário:
+    <input #salario />
+  </label>
 
-    <label>Dependentes:
-        <input #dependentes />
-      </label>
-    
-    <button (click)="calc(salario.value, dependentes.value); salario.value=''">
-      Calcular
-    </button>
+  <label>Dependentes:
+    <input #dependentes />
+  </label>
 
-    
-  </div>
+  <button (click)="calc(salario.value, dependentes.value); salario.value=''">
+    Calcular
+  </button>
+  
+</div>
 
-<ul>
-    <li *ngFor="let faixa of faixas">     
-        <span class="badge">{{faixa.seq}}</span> {{faixa.aliquota}}           
-    </li>
-  </ul>
 
 <h1>BASE IRRF: {{ baseIrrf }}</h1>
-<h1>{{ irrf }}</h1>
-  
+<h1>IRRF: {{ irrf }}</h1>

@@ -1,0 +1,19 @@
+<p>Cálculo de valor liquido esperado</p>
+
+<div>
+    <label>Salário:
+      <input #salario />
+    </label>
+
+    <label>Dependentes:
+      <input #dependentes />
+    </label>
+    
+    <button (click)="calc(salario.value, dependentes.value); salario.value=''">
+      Calcular
+    </button>
+
+    
+  </div>
+  <h1>{{salarioCarteira}}</h1>
+

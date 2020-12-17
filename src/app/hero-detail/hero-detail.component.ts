@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 
 
 
-import { Hero } from '../models/hero/hero';
+import { Hero } from '../models/hero/hero.model';
 import { HeroService } from '../services/hero/hero.service';
 
 @Component({

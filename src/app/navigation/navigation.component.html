@@ -3,10 +3,11 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a routerLink="/dashboard" mat-list-item>Dashboard</a>
-      <a routerLink="/heroes" mat-list-item>heroes</a>
+      <!-- <a routerLink="/dashboard" mat-list-item>Dashboard</a> -->
+      <!-- <a routerLink="/heroes" mat-list-item>heroes</a> -->
       <a routerLink="/calcinss" mat-list-item>Calcula INSS</a>
       <a routerLink="/calcirrf" mat-list-item>Calcula IRRF</a>
+      <a routerLink="/calcliqesperado" mat-list-item>Calcula Liquido Esperado</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -15,11 +16,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>canivete-suico</span>
+      <span>Canivete Suiço</span>
     </mat-toolbar>
 
 
     <router-outlet></router-outlet>
-    <app-messages></app-messages>
+    <!-- <app-messages></app-messages> -->
   </mat-sidenav-content>
 </mat-sidenav-container>

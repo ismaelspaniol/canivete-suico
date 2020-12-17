@@ -1,5 +1,5 @@
 import { CalcinssService } from '../../services/calc-inss/calcinss.service';
-import { InssTable } from '../../models/calc-inss/insstable';
+import { InssTable } from '../../models/calc-inss/insstable.model';
 import { Component, OnInit } from '@angular/core';
 import { ASTWithSource } from '@angular/compiler';
 import { getNumberOfCurrencyDigits } from '@angular/common';
@@ -18,16 +18,8 @@ export class CalcInssComponent implements OnInit {
 
   constructor(private calcinssService: CalcinssService) { }
 
-  ngOnInit(): void {
-    this.getInssTable();
-  }
-
-  getInssTable(): void {
-    this.calcinssService.getTable()
-      .subscribe(faixas => this.faixas = faixas);
-  }
-
-
+  ngOnInit(): void { }
+  
   async calc(NewSalario: string): Promise<void> {
     var salario = Number(NewSalario);
     this.inss = await this.calcinssService.calc(Number(salario));

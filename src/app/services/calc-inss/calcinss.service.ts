@@ -1,11 +1,11 @@
-import { IrrfTable } from './../../models/calc-irrf/irrftable';
+import { IrrfTable } from '../../models/calc-irrf/irrftable.model';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../messages/message.service';
-import { InssTable } from './../../models/calc-inss/insstable';
+import { InssTable } from '../../models/calc-inss/insstable.model';
 import { truncateDecimals } from 'src/app/shared/functions';
 
 @Injectable({
@@ -13,65 +13,50 @@ import { truncateDecimals } from 'src/app/shared/functions';
 })
 export class CalcinssService {
   private tableUrl = 'api/insstable';
-  inss : number;
-    
+  inss: number;
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
-    
 
-  getTable(): Observable<InssTable[]> {
-    return this.http.get<InssTable[]>(this.tableUrl)
-      .pipe(
-        tap(_ => this.log('fetched insstable')),
-        catchError(this.handleError<InssTable[]>('getInssTable', []))
-      );
-  }
-
-  async getAsyncData(): Promise<InssTable[]> {
-    var faixas = await this.http.get<InssTable[]>(this.tableUrl).toPromise();
-    // console.log('No issues, I will wait until promise is resolved..');
-    // console.log(this.subscribeData);
+  async getTable(): Promise<InssTable[]> {
+    var faixas = await this.http.get<InssTable[]>(this.tableUrl).toPromise();    
     return faixas;
   }
 
 
-  async calc(salario : number) : Promise<number> {
-    var faixa:InssTable;
-    var faixas: InssTable[];
-    
+  async calc(salario: number): Promise<number> {            
+    var faixas :InssTable[] = await this.getTable();    
+    return this.calcInss(faixas, salario);    
+  }
+
+  calcInss(faixas: InssTable[],salario: number ): number{
     var faixa: InssTable;
+
     let resultado = new Array;
     var inss: number;
     var saldo: number = salario;
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-    faixas = await this.getAsyncData();
-    // console.log(faixas.toString);
-    // return 1;
-
     if (salario > 0) {
-        for (faixa of faixas) {
-          if (salario > faixa.ate) {
-            inss = ((faixa.ate - faixa.de) * faixa.aliquota) / 100;                    
+      for (faixa of faixas) {
+        if (salario > faixa.ate) {
+          inss = ((faixa.ate - faixa.de) * faixa.aliquota) / 100;
+          resultado.push(truncateDecimals(inss, 2));
+          saldo = saldo - (faixa.ate - faixa.de);
+        }
+        else {
+          if (saldo > 0) {
+            inss = ((salario - faixa.de) * faixa.aliquota) / 100;
             resultado.push(truncateDecimals(inss, 2));
-            saldo = saldo - (faixa.ate - faixa.de);
+            saldo = 0;
           }
-          else {
-            if (saldo > 0) {
-              inss = ((salario - faixa.de) * faixa.aliquota) / 100;
-              resultado.push(truncateDecimals(inss, 2));
-              saldo = 0;
-            }
-  
-          }
-  
-        }                 
+        }
+      }
     }
-    console.log(truncateDecimals(resultado.reduce(reducer), 2));
     return truncateDecimals(resultado.reduce(reducer), 2);
   }
 
@@ -102,5 +87,5 @@ export class CalcinssService {
   }
 
 
-  
+
 }

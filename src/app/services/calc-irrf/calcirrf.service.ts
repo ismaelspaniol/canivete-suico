@@ -1,9 +1,11 @@
-import { IrrfTable } from './../../models/calc-irrf/irrftable';
+import { IrrfTable } from '../../models/calc-irrf/irrftable.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../messages/message.service';
+import { truncateDecimals } from 'src/app/shared/functions';
+import { CalcinssService } from '../calc-inss/calcinss.service';
 
 
 
@@ -11,21 +13,58 @@ import { MessageService } from '../messages/message.service';
   providedIn: 'root'
 })
 export class CalcirrfService {
+  valorDependente : number = 179.71;
   private tableUrl = 'api/irrftable';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private calcinssService : CalcinssService) { }
 
 
-  getTable(): Observable<IrrfTable[]> {
-    return this.http.get<IrrfTable[]>(this.tableUrl)
-      .pipe(
-        tap(_ => this.log('fetched irrftable')),
-        catchError(this.handleError<IrrfTable[]>('getIrrfTable', []))
-      );
+
+
+  async getTable(): Promise<IrrfTable[]> {
+    var faixas = await this.http.get<IrrfTable[]>(this.tableUrl).toPromise();    
+    return faixas;
+  }
+
+
+  async calcBaseIrrf(salario : number, dependentes : number): Promise<number>{
+    var inss = await this.calcinssService.calc(salario);
+    var baseirrf = salario - inss;
+    var totalDependentes = dependentes * this.valorDependente;
+    baseirrf = baseirrf - totalDependentes;
+    return baseirrf;
+
+  }
+
+  async calc(salario: number, dependentes : number): Promise<number> {
+    
+    var baseirrf = await this.calcBaseIrrf(salario, dependentes);
+    
+    return this.calcIrrf(await this.getTable(), baseirrf );
+   
+  }
+
+  calcIrrf(faixas: IrrfTable[], baseirrf: number){
+    var faixa: IrrfTable;
+    var faixas: IrrfTable[];  
+    var irrf;   
+
+    if (baseirrf > 0) {
+      for (faixa of faixas) {
+        if (baseirrf > faixa.de) {
+          irrf = ((baseirrf * faixa.aliquota) / 100) - faixa.parcela;
+
+        }
+      }
+      
+      irrf = truncateDecimals(irrf, 2);
+    }
+    return irrf;
   }
 
   /**

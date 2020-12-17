@@ -26,6 +26,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CalcInssComponent } from './calcs/calc-inss/calc-inss.component';
 import { CalcIrrfComponent } from './calcs/calc-irrf/calc-irrf.component';
+import { CalcLiqEsperadoComponent } from './calcs/calc-liq-esperado/calc-liq-esperado.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -60,7 +62,9 @@ import { CalcIrrfComponent } from './calcs/calc-irrf/calc-irrf.component';
     HeroSearchComponent,
     NavigationComponent,
     CalcInssComponent,
-    CalcIrrfComponent
+    CalcIrrfComponent,
+    CalcLiqEsperadoComponent,
+    HomeComponent
   ],
   bootstrap: [ AppComponent ]
 })

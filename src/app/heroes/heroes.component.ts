@@ -1,5 +1,5 @@
 import { MessageService } from '../services/messages/message.service';
-import { Hero } from '../models/hero/hero';
+import { Hero } from '../models/hero/hero.model';
 import { HeroService } from '../services/hero/hero.service';
 
 import { Component, OnInit } from '@angular/core';
