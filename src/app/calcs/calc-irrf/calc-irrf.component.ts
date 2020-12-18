@@ -1,11 +1,8 @@
 
-
-import { IrrfTable } from '../../models/calc-irrf/irrftable.model';
 import { CalcirrfService } from '../../services/calc-irrf/calcirrf.service';
 import { Component, OnInit } from '@angular/core';
-import { truncateDecimals } from '../../shared/functions';
 import { CalcinssService } from 'src/app/services/calc-inss/calcinss.service';
-import { CalcInssComponent } from '../calc-inss/calc-inss.component';
+
 
 
 
