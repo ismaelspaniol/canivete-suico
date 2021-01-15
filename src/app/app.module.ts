@@ -31,6 +31,7 @@ import { CalcInssComponent } from './calcs/calc-inss/calc-inss.component';
 import { CalcIrrfComponent } from './calcs/calc-irrf/calc-irrf.component';
 import { CalcLiqEsperadoComponent } from './calcs/calc-liq-esperado/calc-liq-esperado.component';
 import { HomeComponent } from './home/home.component';
+import { SortCommentComponent } from './instagram/sort-comment/sort-comment.component';
 
 @NgModule({
   imports: [
@@ -69,7 +70,8 @@ import { HomeComponent } from './home/home.component';
     CalcInssComponent,
     CalcIrrfComponent,
     CalcLiqEsperadoComponent,
-    HomeComponent
+    HomeComponent,
+    SortCommentComponent
   ],
   bootstrap: [ AppComponent ]
 })

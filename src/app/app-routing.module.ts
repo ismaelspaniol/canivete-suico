@@ -1,4 +1,4 @@
-import { HomeComponent } from './home/home.component';
+
 
 
 import { NgModule } from '@angular/core';
@@ -10,7 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { CalcInssComponent } from './calcs/calc-inss/calc-inss.component';
 import { CalcIrrfComponent } from './calcs/calc-irrf/calc-irrf.component';
-import { CalcLiqEsperadoComponent } from './calcs/calc-liq-esperado/calc-liq-esperado.component';
+import { SortCommentComponent } from './instagram/sort-comment/sort-comment.component';
+import { HomeComponent } from './home/home.component';import { CalcLiqEsperadoComponent } from './calcs/calc-liq-esperado/calc-liq-esperado.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'calcirrf', component: CalcIrrfComponent },
   { path: 'calcliqesperado', component: CalcLiqEsperadoComponent },
   { path: 'home', component: HomeComponent},
+  { path: 'sortcommentinstagram', component: SortCommentComponent},
 
 
 ];

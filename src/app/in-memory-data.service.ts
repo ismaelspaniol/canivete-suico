@@ -8,10 +8,10 @@ import { Hero } from './models/hero/hero.model';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const insstable = [
-      { seq: 1, de: 0,       ate: 1045,    aliquota: 7.5, versao: 1 },
-      { seq: 2, de: 1045.01, ate: 2089.60, aliquota: 9, versao: 1 },
-      { seq: 3, de: 2089.61, ate: 3134.40, aliquota: 12, versao: 1 },
-      { seq: 4, de: 3134.41, ate: 6101.06, aliquota: 14, versao: 1 }
+      { seq: 1, de: 0,       ate: 1100,    aliquota: 7.5, versao: 1 },
+      { seq: 2, de: 1100.01, ate: 2203.45, aliquota: 9, versao: 1 },
+      { seq: 3, de: 2203.46, ate: 3305.22, aliquota: 12, versao: 1 },
+      { seq: 4, de: 3305.25, ate: 6433.57, aliquota: 14, versao: 1 }
   ];
 
   const irrftable = [

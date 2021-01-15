@@ -1,0 +1,30 @@
+<h1>Cálculo de INSS</h1>
+<div>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Url Instagram</mat-label>
+          <input matInput #url>
+        </mat-form-field>
+      </td>
+    </tr>
+
+  </table>
+</div> 
+<div *ngIf='url.value > 0'>
+<button mat-raised-button (click)="calc(url.value); ">
+  Calcular
+</button>
+</div>
+
+<div  *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+ 
+  <!-- <h1>INSS DEVIDO: {{ inss }}</h1> -->
+</div>
+
+
+
